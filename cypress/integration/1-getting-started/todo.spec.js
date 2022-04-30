@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+import { contains, get } from "cypress/types/jquery"
+
 // Welcome to Cypress!
 //
 // This spec file contains a variety of sample tests
@@ -18,6 +20,12 @@ describe('example to-do app', () => {
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
     cy.visit('https://example.cypress.io/todo')
+    cy.contains('Commands').click
+    cy.contains('Actions').click
+    cy.url().should('include', '.type()')
+    cy.get('.action-email')
+      .type('fake@email.com')
+      .should('have.value', 'fake@email.com')
   })
 
   it('displays two todo items by default', () => {
